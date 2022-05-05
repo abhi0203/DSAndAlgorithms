@@ -6,6 +6,9 @@ class Node:
         self.value= value
         self.next= None
 
+    def __str__(self):
+        nodeValue= [str(x) for x in self.value ]
+
 
 class LinkedList:
     def __init__(self):

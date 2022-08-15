@@ -4,6 +4,9 @@
 # Pre-Order, In-Order and Post Order traversal. I am also implementing the level order traversal which is similar to Breadth first search for the graphs.
 # Searching an element. Adding an element and deleting an element and its different conditions.
 
+from logging import root
+from queue import Queue as q
+
 class TreeNode:
     def __init__(self, data):
         self.data = data
@@ -53,3 +56,25 @@ def postOrderTraversal(rootNode):
 
 print("Post Order Traversal")
 postOrderTraversal(rootNode)
+
+# This is the code for Level order traversal.
+# This is also the BFS way of accessing the binary tree.
+# Here we add the elements to the queue as we traverse them and then dequeue them one by one in order to access their child elements.
+# Time complexity is O(n) as we have to go through all the elements. Space is also O(n) as I think we have to add all the elements in the queue. 
+
+def levelOrderTraversal(rootNode):
+    if rootNode is None:
+        return
+    else:
+        tempQueue= q()
+        tempQueue.enqueue(rootNode)
+        while not tempQueue.isEmpty():
+            currentNode= tempQueue.dequeue()
+            print(currentNode.data)
+            if currentNode.leftChild is not None:
+                tempQueue.enqueue(currentNode.leftChild)
+            if currentNode.rightChild is not None:
+                tempQueue.enqueue(currentNode.rightChild)
+
+print("Level Order Traversal")
+levelOrderTraversal(rootNode)

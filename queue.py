@@ -47,7 +47,7 @@ class Queue:
             self.queue.tail.next= node
             self.queue.tail= node
     
-    def dequeu(self):
+    def dequeue(self):
         if self.isEmpty():
             print("Queue is empty")
             return None
@@ -83,8 +83,8 @@ queue.enqueue(4)
 print("Full Queue")
 print(queue)
 
-print(queue.dequeu())
-print("After dequeu")
+print(queue.dequeue())
+print("After dequeue")
 print(queue)
 
 print("Peek")

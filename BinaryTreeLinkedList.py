@@ -78,3 +78,57 @@ def levelOrderTraversal(rootNode):
 
 print("Level Order Traversal")
 levelOrderTraversal(rootNode)
+
+
+# This is the code for Sraching a node in the tree. 
+# There are 2 ways we can use One of the DFS based traversals or BFS based traversals which is queue based. 
+# Recommended is BFS since it is a queue based approach. But we are going to try both.
+
+# Here we will use pre order traversal for finding the node. 
+def preOrderTraversalSearchVal(rootNode, nodeValue):
+    if not rootNode:
+        return
+    elif rootNode.data == nodeValue:
+        return "Value Present"
+    else:
+        flagValue= preOrderTraversalSearchVal(rootNode.leftChild, nodeValue)
+        if flagValue== "Value Present":
+            return "Value Present"
+        flagValue= preOrderTraversalSearchVal(rootNode.rightChild, nodeValue)
+        if flagValue== "Value Present":
+            return "Value Present"
+    return "Value Not Present"
+
+print("Searching for the Value DFS Way")
+print(preOrderTraversalSearchVal(rootNode, "Drinks"))
+print(preOrderTraversalSearchVal(rootNode, "Coffee"))
+
+
+# Here we will try to implement he BFS way of searching the value. For this we will use the Queue DS used in the Level Order traversal.
+
+def levelOrderTraversalSearchVal(rootNode, nodeValue):
+    if not rootNode:
+        return
+    else:
+        currentQueue= q()
+        currentQueue.enqueue(rootNode)
+        while not currentQueue.isEmpty():
+            currentNode = currentQueue.dequeue()
+            if currentNode.data == nodeValue:
+                return "Value Present"
+            # Add the nodes to the queue
+            if currentNode.leftChild is not None:
+                currentQueue.enqueue(currentNode.leftChild)
+            if currentNode.rightChild is not None:
+                currentQueue.enqueue(currentNode.rightChild)
+        
+        return "Value Not Present"
+
+print("Searching for the value BFS Way")
+print(levelOrderTraversalSearchVal(rootNode, "Hot"))
+print(levelOrderTraversalSearchVal(rootNode, "Tea"))
+
+
+
+
+

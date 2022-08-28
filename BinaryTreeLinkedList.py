@@ -163,6 +163,70 @@ print("Inserting Value")
 insertNode(rootNode, "Pepsi")
 insertNode(rootNode, "Cola")
 levelOrderTraversal(rootNode)
+
+
+'''
+Next is code to delete the Binary Tree
+Here the approach that I need to follow is 
+    - First get the deepest node in the tree. 
+    - Then replace the value of the deepest node in the tree with the value we want to delete.
+    - Then delete the deepest node.
+
+    We will write separate methods to get the deepest node and then delete it.
+'''
+
+
+# Here the logic is, we do the level order traversal and the node at the end is the deepest node. 
+def getDeepestNode(rootNode):
+    if rootNode is None:
+        return 
+    tempQueue= q()
+    tempQueue.enqueue(rootNode)
+    while not tempQueue.isEmpty():
+        temp= tempQueue.dequeue()
+        if temp.leftChild:
+            tempQueue.enqueue(temp.leftChild)
+        
+        if temp.rightChild:
+            tempQueue.enqueue(temp.rightChild)
+    
+    return temp
+
+
+# Here I am planning to delete the deepest node:
+# This method will take rootnode and the deepest Node. i.e reference to both
+# We will again do the level order traversal and once we reach the deepest node, we will set the reference to None.
+
+def delDeepestNode(rootNode, dNode):
+    if rootNode is None:
+        return 
+    tempQueue= q()
+    tempQueue.enqueue(rootNode)
+    while not tempQueue.isEmpty():
+        currentNode= tempQueue.dequeue()
+        if currentNode== dNode:
+            currentNode= None
+            return
+        if currentNode.leftChild:
+            if currentNode.leftChild== dNode:
+                currentNode.leftChild= None
+                return
+            else:
+                tempQueue.enqueue(currentNode.leftChild)
+        if currentNode.rightChild:
+            if currentNode.rightChild== dNode:
+                currentNode.rightChild= None
+                return
+            else:
+                tempQueue.enqueue(currentNode.rightChild)
     
 
+# Here in this method I will actually delete the node. 
+# What I want to do is, 
+#   - Get the reference to the deepest Node
+#   - Then perform the level order traversal to find the node.
+#   - Then once the node to be deleted is found, replace the current node with the deepest node.
+#   - Once that is done, Delete the deepest node.
 
+def delNode(rootNode, nodeValue):
+    pass

@@ -230,3 +230,9 @@ def delDeepestNode(rootNode, dNode):
 
 def delNode(rootNode, nodeValue):
     pass
+
+
+# Code to delete the entire binary tree.
+
+def delBinaryTree(rootNode):
+    pass

@@ -130,5 +130,39 @@ print(levelOrderTraversalSearchVal(rootNode, "Tea"))
 
 
 
+# Here we will implement the code for inserting an element into binary tree. 
+# Here I will implement the BFS way of implementing the BT where we do the level order search.
+
+def insertNode(rootNode, nodeValue):
+    if rootNode is None:
+        rootNode= TreeNode(nodeValue)
+        print("Value Inserted at RootNode")
+        return
+    # If the root node is not none
+    # Create a queue DS and insert root node into it.
+    tempQueue= q()
+    tempQueue.enqueue(rootNode)
+    # Loop till the queue has some elements.
+    while not tempQueue.isEmpty():
+        currentNode = tempQueue.dequeue()
+        if currentNode.leftChild is None:
+            currentNode.leftChild= TreeNode(nodeValue)
+            print("Value inserted as left child")
+            return
+        else:
+            tempQueue.enqueue(currentNode.leftChild)
+        
+        if currentNode.rightChild is None:
+            currentNode.rightChild= TreeNode(nodeValue)
+            print("Value inserted as right child")
+            return
+        else:
+            tempQueue.enqueue(currentNode.rightChild)
+
+print("Inserting Value")
+insertNode(rootNode, "Pepsi")
+insertNode(rootNode, "Cola")
+levelOrderTraversal(rootNode)
+    
 
 

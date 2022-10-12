@@ -173,5 +173,48 @@ def bucketSort(cList):
 print(bucketSort([1,3,2,5,4,7,6]))
 
 
+def quickSort(array):
+    # Write your code here.
+    #Check if the array is smalle or not.
+    if len(array)<2:
+        return 
+    print("Quick Sort")
+    left= 0
+    right = len(array)-1
+    quickSortHelper(array, left, right)
+    return array
 
-    
+
+def quickSortHelper(array, left, right):
+    if left>= right:
+        return
+
+    i= left
+    j= right-1
+    pivot= array[right]
+
+    #While we  i < J, we move the varaibles forward and backworf.
+    while i < j:
+        #In the inner loop, we move i forweard till it reaches right or array[i]< pivot
+        while i< right and array[i]< pivot:
+            i+=1
+        #In the second inner loop, reduce j till it reaches left or array[j]> pivot
+        while j> left and array[j]> pivot:
+            j-=1
+        #Here if we come out of both the loops, check if i is still less than j and if it is, swap
+        if i< j:
+            array[i], array[j]= array[j], array[i]
+
+    #Finally we are out of the while loop as at some point i crossed J
+    # So we need to check if the current value pointed by i is greater than that of pivot and if it is, then we do one final swap. 
+    #If it is not greater than the pivot is the largest element in the subarray coz i have reached left.
+    if array[i]> pivot:
+        array[i], array[right]= array[right], array[i]
+
+    quickSortHelper(array, left, i-1)
+    quickSortHelper(array, i+1, right)
+
+    return
+        
+        
+print(quickSort([1,3,2,5,4,7,6]))

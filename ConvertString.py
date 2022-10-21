@@ -36,7 +36,7 @@ def convertString(s1, s2, idx1, idx2):
     # Case where they both are the same
     if s1[idx1]== s2[idx2]:
         # Here we simply recurse over the next elements.
-        return convertString(s1, s2, idx1+1, idx2+2)
+        return convertString(s1, s2, idx1+1, idx2+1)
     else:
         # Now we know for sure that we have to do one of insert, delete or replace operation.
         # The one we add represent that we considered that operation and now want to move on to the next operations. 
